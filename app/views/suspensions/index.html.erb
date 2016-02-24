@@ -1,0 +1,72 @@
+<h1>Suspensions#index</h1>
+<p>Find me in app/views/suspensions/index.html.erb</p>
+
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+
+
+      <th>
+        Team
+      </th>
+
+
+      <th>
+        Games
+      </th>
+
+
+      <th>
+        Category
+      </th>
+
+
+      <th>
+        Description
+      </th>
+
+
+      <th>
+        Year
+      </th>
+
+
+      <th>
+        Source
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @suspensions.each do |suspension| %>
+    <tr>
+      <td>
+      <%= suspension.name %>
+      </td>
+      <td>
+      <%= suspension.team %>
+      </td>
+      <td>
+      <%= suspension.games %>
+      </td>
+      <td>
+      <%= suspension.category %>
+      </td>
+      <td>
+      <%= suspension.description %>
+      </td>
+      <td>
+      <%= suspension.year %>
+      </td>
+      <td>
+      <%= suspension.source %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
