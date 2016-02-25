@@ -1,3 +1,3 @@
 class Suspension
-  attr_accessor :name, :team, :games, :category, :description, :year, :source
+  attr_accessor :id, :name, :team, :games, :category, :description, :year, :source
 end
