@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   get "decadegraph" => 'suspensions#decadegraph'
 
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
