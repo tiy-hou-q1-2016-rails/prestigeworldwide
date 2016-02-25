@@ -18,8 +18,11 @@ class SuspensionsController < ApplicationController
   end
 
   def index
-    fetch_suspensions
-  end
+    @suspensions = fetch_suspensions.sort_by(&:name)
+  #    if params[:qs].present?
+  #     @suspensions = @suspensions.select{|s| s.name.include? params [:qs]}
+  # end
+end
 
 
 
