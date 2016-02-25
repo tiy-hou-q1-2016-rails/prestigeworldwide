@@ -1,5 +1,11 @@
+<h1>Suspensions#index</h1>
+<p>Find me in app/views/suspensions/index.html.erb</p>
 
-<div class="container">
+<%= debug params %>
+
+<form>
+  <input name="qs" id="qs"></input>
+</form>
 
 <h1>Suspensions#index</h1>
 
@@ -15,15 +21,12 @@
       <th>
         Name
       </th>
-
       <th>
         Team
       </th>
-
       <th>
         Games
       </th>
-
       <th>
         <select>
           <% @suspensions.each do |suspension| %>
@@ -32,15 +35,12 @@
           <% end %>
         </select>
       </th>
-
       <th>
         Description
       </th>
-
       <th>
         Year
       </th>
-
       <th>
         Source
       </th>
@@ -74,4 +74,3 @@
     <% end %>
   </tbody>
 </table>
-</div>
