@@ -1,6 +1,4 @@
-<h1>Suspensions#index</h1>
 
-<%= debug params%>
 <form>
   <label>Search by Category</label>
   <input name="qs" category="qs"></input>
@@ -21,13 +19,15 @@
         Games
       </th>
       <th>
-        <select>
-            <option>Category</option>
-            <option value="PEDs">PEDs</option>
-            <option value="Substance Abuse">Substance Abuse</option>
-            <option value="Personal Conduct">Personal Conduct</option>
-            <option value="In-Game Violence">In-Game Violence</option>
-        </select>
+        <form>
+          <select>
+              <option>Category</option>
+              <option category="PEDs">PEDs</option>
+              <option category="Substance Abuse">Substance Abuse</option>
+              <option category="Personal Conduct">Personal Conduct</option>
+              <option category="In-Game Violence">In-Game Violence</option>
+          </select>
+        </form>
       </th>
       <th>
         Description
