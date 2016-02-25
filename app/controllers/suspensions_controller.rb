@@ -24,8 +24,11 @@ class SuspensionsController < ApplicationController
       @suspensions = @suspensions.select do |suspension|
         (suspension.team.downcase.include? params[:qs].downcase) ||
         (suspension.name.downcase.include? params[:qs].downcase) ||
-        (suspension.category.downcase.include? params[:qs].downcase) ||
         (suspension.year.to_s.include? params[:qs])
+      end
+    elsif params[:category].present?
+      @suspensions = @suspensions.select do |suspension|
+        (suspension.category.include? params[:category])
       end
     end
   end
