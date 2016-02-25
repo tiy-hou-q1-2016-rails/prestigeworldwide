@@ -22,10 +22,11 @@
       </th>
       <th>
         <select>
-          <% @suspensions.each do |suspension| %>
             <option>Category</option>
-            <option value="<%= suspension.category %>"><%= suspension.category %></option>
-          <% end %>
+            <option value="PEDs">PEDs</option>
+            <option value="Substance Abuse">Substance Abuse</option>
+            <option value="Personal Conduct">Personal Conduct</option>
+            <option value="In-Game Violence">In-Game Violence</option>
         </select>
       </th>
       <th>
