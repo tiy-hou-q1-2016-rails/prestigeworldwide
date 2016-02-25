@@ -19,13 +19,14 @@ class SuspensionsController < ApplicationController
 
   def index
     @suspensions = fetch_suspensions.sort_by(&:name)
-  #    if params[:qs].present?
-  #     @suspensions = @suspensions.select{|s| s.name.include? params [:qs]}
-  # end
-end
-
-
-
+    if params[:qs].present?
+      (@suspensions = @suspensions.select{ |s| s.name.include? params[:qs]) ||
+      (@suspensions = @suspensions.select{ |s| s.category.include? params[:qs]) ||
+      (@suspensions = @suspensions.select{ |s| s.description.include? params[:qs]) ||
+      (@suspensions = @suspensions.select{ |s| s.year.include? params[:qs])
+    end
+  end
+  end
   def decadegraph
     fetch_suspensions
   end

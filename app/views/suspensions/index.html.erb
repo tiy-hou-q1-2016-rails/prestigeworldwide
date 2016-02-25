@@ -3,7 +3,7 @@
 
 <h1>Suspensions#index</h1>
 
-
+<%= debug params%>
 <form>
   <label>Search by Category</label>
   <input name="qs" category="qs"></input>
@@ -25,7 +25,12 @@
       </th>
 
       <th>
-        Category
+        <select>
+          <% @suspensions.each do |suspension| %>
+            <option>Category</option>
+            <option value="<%= suspension.category %>"><%= suspension.category %></option>
+          <% end %>
+        </select>
       </th>
 
       <th>
