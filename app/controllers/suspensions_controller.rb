@@ -6,14 +6,14 @@ class SuspensionsController < ApplicationController
 
     @suspensions = @suspensions.map do |hash|
       suspension = Suspension.new
-      suspension.id = hash["id"]
-      suspension.name = hash["name"]
-      suspension.team = hash["team"]
-      suspension.games = hash["games"]
-      suspension.category = hash["category"]
-      suspension.description = hash["description"]
+      suspension.id = hash["id"].to_i
+      suspension.name = hash["name"].to_s
+      suspension.team = hash["team"].to_s
+      suspension.games = hash["games"].to_s
+      suspension.category = hash["category"].to_s
+      suspension.description = hash["description"].to_s
       suspension.year = hash["year"].to_i
-      suspension.source = hash["source"]
+      suspension.source = hash["source"].to_s
       suspension
     end
   end
