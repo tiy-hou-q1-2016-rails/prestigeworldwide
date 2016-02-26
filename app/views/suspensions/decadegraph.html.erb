@@ -1,8 +1,12 @@
 <head>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
+
     google.charts.load('current', {'packages':['bar']});
     google.charts.setOnLoadCallback(drawStuff);
+    google.charts.load('current', {'packages':['line']});
+    google.charts.setOnLoadCallback(drawChart);
+
 
     function drawStuff() {
       var data1 = new google.visualization.arrayToDataTable([
@@ -27,7 +31,7 @@
         bar: { groupWidth: "90%" }
       };
 
-      var chart1 = new google.charts.Bar(document.getElementById('top_x_div'));
+      var chart1 = new google.charts.Bar(document.getElementById('top_x_div2'));
       // Convert the Classic options to Material options.
       chart1.draw(data1, google.charts.Bar.convertOptions(options));
 
@@ -51,64 +55,47 @@
 
       chart2.draw(data2, options);
 
-    }
 
-    </script>
+          var data3 = new google.visualization.arrayToDataTable([
+            ['Decade', 'Suspension'],
+            ["1940-1949",<%= @fourties.count %>],
+            ["1950-1959",<%= @fifties.count %>],
+            ["1960-1969",<%= @sixties.count %>],
+            ["1970-1979",<%= @seventies.count %>],
+            ["1980-1989",<%= @eighties.count %>],
+            ["1990-1999",<%= @nineties.count %>],
+            ["2000-2009",<%= @aughts.count %>],
+            ["2010-2016",<%= @teens.count %>]
+          ]);
+
+          var options = {
+            title: 'Suspenions Totals by Decade',
+            width: 900,
+            legend: { position: 'none' },
+            chart: { subtitle: '' },
+            axes: {
+              x: {
+                0: { side: 'top', label: 'Decades'} // Top x-axis.
+              }
+            },
+            bar: { groupWidth: "90%" }
+          };
+
+          var chart3 = new google.charts.Bar(document.getElementById('top_x_div1'));
+          // Convert the Classic options to Material options.
+          chart3.draw(data3, google.charts.Bar.convertOptions(options));
+        };
+      </script>
+
 
 </head>
-<!-- <div id="curve_chart" style="width: 900px; height: 500px"></div>
-<br> -->
-<div class="decade">
-<h1>Suspension Totals by Decade</h1>
-  <ul>
-    <li>1940-1949: <%= @fourties.count %> suspensions.</li>
-    <li>1950-1959: <%= @fifties.count %> suspensions.</li>
-    <li>1960-1969: <%= @sixties.count %> suspension.</li>
-    <li>1970-1979: <%= @seventies.count %> suspensions.</li>
-    <li>1980-1989: <%= @eighties.count %> suspensions.</li>
-    <li>1990-1999: <%= @nineties.count %> suspensions.</li>
-    <li>2000-2009: <%= @aughts.count %> suspensions.</li>
-    <li>2010-2016: <%= @teens.count %> suspensions.</li>
-    <li>No year included for <%= @null_year.count %> suspension.</li>
-    <li><%= @fourties.count.to_i + @fifties.count.to_i + @sixties.count.to_i + @seventies.count.to_i + @eighties.count.to_i + @nineties.count.to_i + @aughts.count.to_i + @teens.count.to_i + @null_year.count.to_i %> total NFL suspensions.</li>
-  </ul>
-</div>
 
-<div id="top_x_div" style="width: 900px; height: 500px;"></div>
+<div id="top_x_div1" style="width: 900px; height: 500px;"></div>
+
 <br>
-<!-- <div class="category">
-  <h1>Historical Breakdown of Suspensions According to Category</h1>
-  <ul>
-    <li><%= @peds.count %> PED related suspensions.</li>
-    <li><%= @personal_conduct.count %> Personal Conduct related suspensions.</li>
-    <li><%= @substance_abuse.count %> Substance Abuse related suspensions.</li>
-    <li><%= @game_violence.count %> In-Game Violence related suspensions.</li>
-    <li><%= @peds.count.to_i + @substance_abuse.count.to_i + @personal_conduct.count.to_i + @game_violence.count.to_i %> total NFL suspensions.</li>
-  </ul>
-</div> -->
+
+<div id="top_x_div2" style="width: 900px; height: 500px;"></div>
+<br>
+
 
 <div id="columnchart_material" style="width: 900px; height: 500px;"></div>
-
-<!-- <div class="avg_max_min">
-
-  <h1>Performance Enhancing Drugs:</h1>
-  <p>Average length of PED related suspensions: <%= @peds_avg.round(2) %> games.</p>
-  <p>Maximum PED related suspension in NFL History: <%= @peds_games.max %> games.</p>
-  <p>Minimum PED related suspension in NFL History: <%= @peds_games.min %> games.</p>
-
-  <h1>Substance Abuse:</h1>
-  <p>Average length of Substance Abuse related suspensions: <%= @substance_abuse_avg.round(2) %> games.</p>
-  <p>Maximum Substance Abuse related suspension in NFL History: <%= @substance_abuse_games.max %> games.</p>
-  <p>Minimum Substance Abuse related suspension in NFL History: 1 game.</p>
-
-  <h1>Personal Conduct:</h1>
-  <p>Average length of Personal Conduct related suspensions: <%= @personal_conduct_avg.round(2) %> games.</p>
-  <p>Maximum Personal Conduct related suspension in NFL History: <%= @personal_conduct_games.max %> games.</p>
-  <p>Minimum Personal Conduct related suspension in NFL History: 1 game.</p>
-
-  <h1>In-Game Violence:</h1>
-  <p>Average length of In-Game Violence related suspensions: <%= @game_violence_avg.round(2) %> games.</p>
-  <p>Maximum In-Game Violence related suspension in NFL History: <%= @game_violence_games.max %> games.</p>
-  <p>Minimum In-Game Violence related suspension in NFL History: <%= @game_violence_games.min %> game.</p>
-
-</div> -->
