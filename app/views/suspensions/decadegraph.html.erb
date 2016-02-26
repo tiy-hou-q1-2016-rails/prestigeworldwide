@@ -5,8 +5,8 @@
     google.charts.setOnLoadCallback(drawStuff);
 
     function drawStuff() {
-      var data = new google.visualization.arrayToDataTable([
-        ['Suspension', 'Ofenses'],
+      var data1 = new google.visualization.arrayToDataTable([
+        ['Suspension', 'Offenses'],
         ["PED", <%= @peds.count %>],
         ["Personal Conduct", <%= @personal_conduct.count %>],
         ["Substance Abuse", <%= @substance_abuse.count %>],
@@ -21,18 +21,43 @@
         chart: { subtitle: '' },
         axes: {
           x: {
-            0: { side: 'top', label: 'Suspension by Catagory'} // Top x-axis.
+            0: { side: 'top', label: 'Suspensions by Catagory'} // Top x-axis.
           }
         },
         bar: { groupWidth: "90%" }
       };
 
-      var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+      var chart1 = new google.charts.Bar(document.getElementById('top_x_div'));
       // Convert the Classic options to Material options.
-      chart.draw(data, google.charts.Bar.convertOptions(options));
-    };
-  </script>
+      chart1.draw(data1, google.charts.Bar.convertOptions(options));
+
+
+      var data2 = google.visualization.arrayToDataTable([
+        ['Offense Category', 'Max Suspension', 'Average Suspension', 'Minimum Suspension'],
+        ['PEDs', <%= @peds_games.max %>, <%= @peds_avg.round(2) %>, <%= @peds_games.min %>],
+        ['Substance Abuse', <%= @substance_abuse_games.max %>, <%= @substance_abuse_avg.round(2) %>, 1],
+        ['Personal Conduct', <%= @personal_conduct_games.max %>, <%= @personal_conduct_avg.round(2) %>, 1],
+        ['In-Game Violence', <%= @game_violence_games.max %>, <%= @game_violence_avg.round(2) %>, <%= @game_violence_games.min %>]
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Suspension Lengths (Games) by Category',
+          subtitle: 'PEDs, Substance Abuse, Personal Conduct, In-Game Violence',
+        }
+      };
+
+      var chart2 = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+      chart2.draw(data2, options);
+
+    }
+
+    </script>
+
 </head>
+<!-- <div id="curve_chart" style="width: 900px; height: 500px"></div>
+<br> -->
 <div class="decade">
 <h1>Suspension Totals by Decade</h1>
   <ul>
@@ -50,8 +75,8 @@
 </div>
 
 <div id="top_x_div" style="width: 900px; height: 500px;"></div>
-
-<div class="category">
+<br>
+<!-- <div class="category">
   <h1>Historical Breakdown of Suspensions According to Category</h1>
   <ul>
     <li><%= @peds.count %> PED related suspensions.</li>
@@ -60,32 +85,30 @@
     <li><%= @game_violence.count %> In-Game Violence related suspensions.</li>
     <li><%= @peds.count.to_i + @substance_abuse.count.to_i + @personal_conduct.count.to_i + @game_violence.count.to_i %> total NFL suspensions.</li>
   </ul>
-</div>
+</div> -->
 
-<div class="avg_max_min">
+<div id="columnchart_material" style="width: 900px; height: 500px;"></div>
+
+<!-- <div class="avg_max_min">
 
   <h1>Performance Enhancing Drugs:</h1>
   <p>Average length of PED related suspensions: <%= @peds_avg.round(2) %> games.</p>
   <p>Maximum PED related suspension in NFL History: <%= @peds_games.max %> games.</p>
   <p>Minimum PED related suspension in NFL History: <%= @peds_games.min %> games.</p>
-  <!-- <h2><%= @peds_games %></h2> -->
 
   <h1>Substance Abuse:</h1>
   <p>Average length of Substance Abuse related suspensions: <%= @substance_abuse_avg.round(2) %> games.</p>
   <p>Maximum Substance Abuse related suspension in NFL History: <%= @substance_abuse_games.max %> games.</p>
-  <p>Minimum Substance Abuse related suspension in NFL History: <%= @substance_abuse_games.min %> games.</p>
-  <h2><%= @substance_abuse_games %> ***0 values "indefinite"*** </h2>
+  <p>Minimum Substance Abuse related suspension in NFL History: 1 game.</p>
 
   <h1>Personal Conduct:</h1>
   <p>Average length of Personal Conduct related suspensions: <%= @personal_conduct_avg.round(2) %> games.</p>
   <p>Maximum Personal Conduct related suspension in NFL History: <%= @personal_conduct_games.max %> games.</p>
-  <p>Minimum Personal Conduct related suspension in NFL History: <%= @personal_conduct_games.min %> games.</p>
-  <h2><%= @personal_conduct_games %> ***0 values "indefinite"*** </h2>
+  <p>Minimum Personal Conduct related suspension in NFL History: 1 game.</p>
 
   <h1>In-Game Violence:</h1>
   <p>Average length of In-Game Violence related suspensions: <%= @game_violence_avg.round(2) %> games.</p>
   <p>Maximum In-Game Violence related suspension in NFL History: <%= @game_violence_games.max %> games.</p>
   <p>Minimum In-Game Violence related suspension in NFL History: <%= @game_violence_games.min %> game.</p>
-  <!-- <h2><%= @game_violence_games %></h2> -->
 
-</div>
+</div> -->
