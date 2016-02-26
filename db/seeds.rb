@@ -23,5 +23,3 @@ ActiveRecord::Base.connection.execute(sql_query)
 sql_query = "select * from nfl_suspensions"
 
 records = ActiveRecord::Base.connection.execute(sql_query)
-
-puts "Created #{records.count} records"
