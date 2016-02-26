@@ -1,6 +1,6 @@
 #wrapper{
+  margin: 0 auto;
   background-image: url(image-path('bg.jpg'));
-  background-position: center;
 }
 
 .container{
@@ -11,4 +11,13 @@
   background: #FFFFFF;
   opacity:0.6;
   color:#0000000;
+}
+
+.column {
+  padding-right: 5px;
+}
+
+h1{
+  margin-bottom: 0;
+  padding:10px;
 }
