@@ -1,3 +1,23 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#wrapper{
+  margin: 0 auto;
+  background-image: url(image-path('bg.jpg'));
+}
+
+.container{
+  padding-top:40px;
+}
+
+.table{
+  background: #FFFFFF;
+  opacity:0.6;
+  color:#0000000;
+}
+
+.column {
+  padding-right: 5px;
+}
+
+h1{
+  margin-bottom: 0;
+  padding:10px;
+}

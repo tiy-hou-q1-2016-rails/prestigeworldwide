@@ -43,7 +43,9 @@ class SuspensionsController < ApplicationController
         (suspension.category.downcase.include? params[:category].downcase)
       end
     end
-  end
+end
+
+
 
 
   def decadegraph
