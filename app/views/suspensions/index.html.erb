@@ -1,7 +1,14 @@
 
 <form>
-  <label>Search by Category</label>
-  <input name="qs" category="qs"></input>
+  <input name="qs" placeholder="Search by Name"></input>
+<select>
+    <option>Category</option>
+    <option value="peds">PEDs</option>
+    <option value="substance abuse">Substance Abuse</option>
+    <option value="personal conduct">Personal Conduct</option>
+    <option value="in-game violence">In-Game Violence</option>
+</select>
+  <input type="submit">
 </form>
 <p><%= link_to "Decadegraph", "decadegraph",class: "btn btn-default active" %>  </p>
 
@@ -19,15 +26,7 @@
         Games
       </th>
       <th>
-        <form>
-          <select>
-              <option>Category</option>
-              <option category="PEDs">PEDs</option>
-              <option category="Substance Abuse">Substance Abuse</option>
-              <option category="Personal Conduct">Personal Conduct</option>
-              <option category="In-Game Violence">In-Game Violence</option>
-          </select>
-        </form>
+        Category
       </th>
       <th>
         Description

@@ -20,18 +20,31 @@ class SuspensionsController < ApplicationController
 
   def index
     @suspensions = fetch_suspensions.sort_by(&:name)
+    if params[:qs].present? && params[:category].present?
+      @suspensions = @suspensions.select do |suspension|
+        (suspension.name.downcase.include? params[:qs].downcase) &&
+        (suspension.category.downcase.include? params[:category].downcase)
+      end
+    end
     if params[:qs].present?
       @suspensions = @suspensions.select do |suspension|
-        (suspension.team.downcase.include? params[:qs].downcase) ||
-        (suspension.name.downcase.include? params[:qs].downcase) ||
-        (suspension.year.to_s.include? params[:qs])
+        (suspension.name.downcase.include? params[:qs].downcase)
+      end
+    elsif params[:year].present?
+      @suspensions = @suspensions.select do |suspension|
+        (suspension.year.to_s.include? params[:year])
+      end
+    elsif params[:team].present?
+      @suspensions = @suspensions.select do |suspension|
+        (suspension.name.downcase.include? params[:team].downcase)
       end
     elsif params[:category].present?
       @suspensions = @suspensions.select do |suspension|
-        (suspension.category.include? params[:category])
+        (suspension.category.downcase.include? params[:category].downcase)
       end
     end
   end
+
 
   def decadegraph
     @suspensions = fetch_suspensions
@@ -135,5 +148,4 @@ class SuspensionsController < ApplicationController
     @game_violence_avg = (@game_violence_games.inject(0, :+).to_f)/@game_violence_games.count.to_f
 
   end
-
 end
