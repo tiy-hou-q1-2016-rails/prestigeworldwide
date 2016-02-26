@@ -1,70 +1,91 @@
+<div id="wrapper">
+  <div class="container">
+    <div class="row-fluid">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <%link_to "Decadegraph", "decadegraph",class: "btn btn-default active"%>
+          </div>
 
-<form>
-  <label>Search by Category</label>
-  <input name="qs" category="qs"></input>
-</form>
-<p><%= link_to "Decadegraph", "decadegraph",class: "btn btn-default active" %>  </p>
-
-<p>Find me in app/views/suspensions/index.html.erb</p>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Team
-      </th>
-      <th>
-        Games
-      </th>
-      <th>
-        <form>
-          <select>
-              <option>Category</option>
-              <option category="PEDs">PEDs</option>
-              <option category="Substance Abuse">Substance Abuse</option>
-              <option category="Personal Conduct">Personal Conduct</option>
-              <option category="In-Game Violence">In-Game Violence</option>
-          </select>
-        </form>
-      </th>
-      <th>
-        Description
-      </th>
-      <th>
-        Year
-      </th>
-      <th>
-        Source
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @suspensions.each do |suspension| %>
-    <tr>
-      <td>
-        <%= suspension.name %>
-      </td>
-      <td>
-        <%= suspension.team %>
-      </td>
-      <td>
-        <%= suspension.games %>
-      </td>
-      <td>
-        <%= suspension.category %>
-      </td>
-      <td>
-        <%= suspension.description %>
-      </td>
-      <td>
-        <%= suspension.year %>
-      </td>
-      <td>
-        <%= suspension.source %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <input name="qs"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to "Decadegraph", "/decadegraph/"%></li>
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+      </nav>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="row">
+              Name
+            </th>
+            <th scope="row">
+              Team
+            </th>
+            <th scope="row">
+              Games
+            </th>
+            <th>
+              <form>
+                <select>
+                  <option>Category</option>
+                  <option value="PEDs">PEDs</option>
+                  <option value="Substance abuse">Substance Abuse</option>
+                  <option value="Personal conduct">Personal Conduct</option>
+                  <option value="In-game violence">In-Game Violence</option>
+                </select>
+              </form>
+            </th>
+            <th scope="row">
+              Description
+            </th>
+            <th scope="row">
+              Year
+            </th>
+            <th scope="row">
+              Source
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @suspensions.each do |suspension| %>
+          <tr>
+            <td>
+              <%= suspension.name %>
+            </td>
+            <td>
+              <%= suspension.team %>
+            </td>
+            <td>
+              <%= suspension.games %>
+            </td>
+            <td>
+              <%= suspension.category %>
+            </td>
+            <td>
+              <%= suspension.description %>
+            </td>
+            <td>
+              <%= suspension.year %>
+            </td>
+            <td>
+              <%= suspension.source %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

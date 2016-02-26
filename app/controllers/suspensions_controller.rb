@@ -26,12 +26,15 @@ class SuspensionsController < ApplicationController
         (suspension.name.downcase.include? params[:qs].downcase) ||
         (suspension.year.to_s.include? params[:qs])
       end
-    elsif params[:category].present?
-      @suspensions = @suspensions.select do |suspension|
-        (suspension.category.include? params[:category])
+      if params[:category].present?
+        @suspensions = @suspensions.select do |suspension|
+          (suspension.category.include? params[:category])
+        end
       end
     end
-  end
+end
+
+
 
   def decadegraph
     @suspensions = fetch_suspensions
