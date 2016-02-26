@@ -1,94 +1,119 @@
-<head>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
 
-    google.charts.load('current', {'packages':['bar']});
-    google.charts.setOnLoadCallback(drawStuff);
-    google.charts.load('current', {'packages':['line']});
-    google.charts.setOnLoadCallback(drawChart);
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
 
-
-    function drawStuff() {
-      var data1 = new google.visualization.arrayToDataTable([
-        ['Suspension', 'Offenses'],
-        ["PED", <%= @peds.count %>],
-        ["Personal Conduct", <%= @personal_conduct.count %>],
-        ["Substance Abuse", <%= @substance_abuse.count %>],
-        ["In-Game Violence", <%= @game_violence.count %>],
-        ['Total', <%= @peds.count.to_i + @substance_abuse.count.to_i + @personal_conduct.count.to_i + @game_violence.count.to_i %>]
-      ]);
-
-      var options = {
-        title: 'Suspenions by Category',
-        width: 900,
-        legend: { position: 'none' },
-        chart: { subtitle: '' },
-        axes: {
-          x: {
-            0: { side: 'top', label: 'Suspensions by Catagory'} // Top x-axis.
-          }
-        },
-        bar: { groupWidth: "90%" }
-      };
-
-      var chart1 = new google.charts.Bar(document.getElementById('top_x_div2'));
-      // Convert the Classic options to Material options.
-      chart1.draw(data1, google.charts.Bar.convertOptions(options));
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawStuff);
+        google.charts.load('current', {'packages':['line']});
+        google.charts.setOnLoadCallback(drawChart);
 
 
-      var data2 = google.visualization.arrayToDataTable([
-        ['Offense Category', 'Max Suspension', 'Average Suspension', 'Minimum Suspension'],
-        ['PEDs', <%= @peds_games.max %>, <%= @peds_avg.round(2) %>, <%= @peds_games.min %>],
-        ['Substance Abuse', <%= @substance_abuse_games.max %>, <%= @substance_abuse_avg.round(2) %>, 1],
-        ['Personal Conduct', <%= @personal_conduct_games.max %>, <%= @personal_conduct_avg.round(2) %>, 1],
-        ['In-Game Violence', <%= @game_violence_games.max %>, <%= @game_violence_avg.round(2) %>, <%= @game_violence_games.min %>]
-      ]);
-
-      var options = {
-        chart: {
-          title: 'Suspension Lengths (Games) by Category',
-          subtitle: 'PEDs, Substance Abuse, Personal Conduct, In-Game Violence',
-        }
-      };
-
-      var chart2 = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-      chart2.draw(data2, options);
-
-
-          var data3 = new google.visualization.arrayToDataTable([
-            ['Decade', 'Suspension'],
-            ["1940-1949",<%= @fourties.count %>],
-            ["1950-1959",<%= @fifties.count %>],
-            ["1960-1969",<%= @sixties.count %>],
-            ["1970-1979",<%= @seventies.count %>],
-            ["1980-1989",<%= @eighties.count %>],
-            ["1990-1999",<%= @nineties.count %>],
-            ["2000-2009",<%= @aughts.count %>],
-            ["2010-2016",<%= @teens.count %>]
+        function drawStuff() {
+          var data1 = new google.visualization.arrayToDataTable([
+            ['Suspension', 'Offenses'],
+            ["PED", <%= @peds.count %>],
+            ["Personal Conduct", <%= @personal_conduct.count %>],
+            ["Substance Abuse", <%= @substance_abuse.count %>],
+            ["In-Game Violence", <%= @game_violence.count %>],
+            ['Total', <%= @peds.count.to_i + @substance_abuse.count.to_i + @personal_conduct.count.to_i + @game_violence.count.to_i %>]
           ]);
 
           var options = {
-            title: 'Suspenions Totals by Decade',
+            title: 'Suspenions by Category',
             width: 900,
             legend: { position: 'none' },
             chart: { subtitle: '' },
             axes: {
               x: {
-                0: { side: 'top', label: 'Decades'} // Top x-axis.
+                0: { side: 'top', label: 'Suspensions by Catagory'} // Top x-axis.
               }
             },
             bar: { groupWidth: "90%" }
           };
 
-          var chart3 = new google.charts.Bar(document.getElementById('top_x_div1'));
+          var chart1 = new google.charts.Bar(document.getElementById('top_x_div2'));
           // Convert the Classic options to Material options.
-          chart3.draw(data3, google.charts.Bar.convertOptions(options));
-        };
-      </script>
+          chart1.draw(data1, google.charts.Bar.convertOptions(options));
 
 
-</head>
+          var data2 = google.visualization.arrayToDataTable([
+            ['Offense Category', 'Max Suspension', 'Average Suspension', 'Minimum Suspension'],
+            ['PEDs', <%= @peds_games.max %>, <%= @peds_avg.round(2) %>, <%= @peds_games.min %>],
+            ['Substance Abuse', <%= @substance_abuse_games.max %>, <%= @substance_abuse_avg.round(2) %>, 1],
+            ['Personal Conduct', <%= @personal_conduct_games.max %>, <%= @personal_conduct_avg.round(2) %>, 1],
+            ['In-Game Violence', <%= @game_violence_games.max %>, <%= @game_violence_avg.round(2) %>, <%= @game_violence_games.min %>]
+          ]);
+
+          var options = {
+            chart: {
+              title: 'Suspension Lengths (Games) by Category',
+              subtitle: 'PEDs, Substance Abuse, Personal Conduct, In-Game Violence',
+            }
+          };
+
+          var chart2 = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+          chart2.draw(data2, options);
+
+
+              var data3 = new google.visualization.arrayToDataTable([
+                ['Decade', 'Suspension'],
+                ["1940-1949",<%= @fourties.count %>],
+                ["1950-1959",<%= @fifties.count %>],
+                ["1960-1969",<%= @sixties.count %>],
+                ["1970-1979",<%= @seventies.count %>],
+                ["1980-1989",<%= @eighties.count %>],
+                ["1990-1999",<%= @nineties.count %>],
+                ["2000-2009",<%= @aughts.count %>],
+                ["2010-2016",<%= @teens.count %>]
+              ]);
+
+              var options = {
+                title: 'Suspenions Totals by Decade',
+                width: 900,
+                legend: { position: 'none' },
+                chart: { subtitle: '' },
+                axes: {
+                  x: {
+                    0: { side: 'top', label: 'Decades'} // Top x-axis.
+                  }
+                },
+                bar: { groupWidth: "90%" }
+              };
+
+              var chart3 = new google.charts.Bar(document.getElementById('top_x_div1'));
+              // Convert the Classic options to Material options.
+              chart3.draw(data3, google.charts.Bar.convertOptions(options));
+            };
+          </script>
+
+
+
+  </head>
+  <body>
+
+  </body>
+
+<div id="wrapper">
+<div class="container">
+      <h1>NFL SUSPENSIONS</h1>
+      <div class="row-fluid">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to "Home", "/"%></li>
+            </ul>
+          </div>
+
+<div class="container1">
+
 
 <div id="top_x_div1" style="width: 900px; height: 500px;"></div>
 
@@ -99,3 +124,7 @@
 
 
 <div id="columnchart_material" style="width: 900px; height: 500px;"></div>
+</div>
+</div>
+</div>
+</html>
