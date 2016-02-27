@@ -7,32 +7,32 @@ class SuspensionsController < ApplicationController
     @suspensions = @suspensions.map do |hash|
       suspension = Suspension.new
       suspension.id = hash["id"].to_i
-      suspension.name = hash["name"].to_s
-      suspension.team = hash["team"].to_s
-      suspension.games = hash["games"].to_s
-      suspension.category = hash["category"].to_s
-      suspension.description = hash["description"].to_s
+      suspension.name = hash["name"]
+      suspension.team = hash["team"]
+      suspension.games = hash["games"]
+      suspension.category = hash["category"]
+      suspension.description = hash["description"]
       suspension.year = hash["year"].to_i
-      suspension.source = hash["source"].to_s
+      suspension.source = hash["source"]
       suspension
     end
   end
 
   def index
+
     @suspensions = fetch_suspensions.sort_by(&:name)
     if params[:qs].present?
       @suspensions = @suspensions.select do |suspension|
-        (suspension.name.downcase.include? params[:qs].downcase)
-      end
-    elsif params[:category].present?
-      @suspensions = @suspensions.select do |suspension|
-        (suspension.category.downcase.include? params[:category].downcase)
+        suspension.name.downcase.include? params[:qs].downcase
       end
     end
+    if params[:category].present?
+      @suspensions = @suspensions.select do |suspension|
+        suspension.category.downcase.include? params[:category].downcase
+      end
+    end
+    @suspensions = Kaminari.paginate_array(@suspensions).page(params[:page]).per(12)
   end
-
-
-
 
   def decadegraph
     @suspensions = fetch_suspensions
@@ -100,34 +100,28 @@ class SuspensionsController < ApplicationController
     @personal_conduct
     @game_violence
 
-
     @peds_games = []
     @substance_abuse_games = []
-    # @substance_abuse_games_indef = []
     @personal_conduct_games = []
-    # @personal_conduct_games_indef = []
     @game_violence_games = []
 
     @suspensions.map do |suspension|
       if suspension.category.downcase.include? "peds"
         @peds_games << suspension.games.to_i
-      # elsif suspension.category.downcase.include? "substance" && suspension.games.downcase.include? "indef"
-      #   @substance_abuse_games_indef << suspension.games
+
       elsif suspension.category.downcase.include? "substance"
         @substance_abuse_games << suspension.games.to_i
-      # elsif suspension.category.downcase.include? "conduct" && suspension.games.downcase.include? "indef"
-      #   @personal_conduct_games_indef << suspension.games
+
       elsif suspension.category.downcase.include? "conduct"
         @personal_conduct_games << suspension.games.to_i
       else
         @game_violence_games << suspension.games.to_i
       end
     end
+
     @peds_games
     @substance_abuse_games
-    # @substance_abuse_games_indef
     @personal_conduct_games
-    # @personal_conduct_games_indef
     @game_violence_games
 
     @peds_avg = (@peds_games.inject(0, :+).to_f)/@peds_games.count.to_f
