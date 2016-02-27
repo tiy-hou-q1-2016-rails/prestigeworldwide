@@ -19,6 +19,7 @@ class SuspensionsController < ApplicationController
   end
 
   def index
+
     @suspensions = fetch_suspensions.sort_by(&:name)
     if params[:qs].present?
       @suspensions = @suspensions.select do |suspension|
@@ -30,6 +31,7 @@ class SuspensionsController < ApplicationController
         suspension.category.downcase.include? params[:category].downcase
       end
     end
+    @suspensions = Kaminari.paginate_array(@suspensions).page(params[:page]).per(12)
   end
 
   def decadegraph
@@ -98,34 +100,28 @@ class SuspensionsController < ApplicationController
     @personal_conduct
     @game_violence
 
-
     @peds_games = []
     @substance_abuse_games = []
-    # @substance_abuse_games_indef = []
     @personal_conduct_games = []
-    # @personal_conduct_games_indef = []
     @game_violence_games = []
 
     @suspensions.map do |suspension|
       if suspension.category.downcase.include? "peds"
         @peds_games << suspension.games.to_i
-      # elsif suspension.category.downcase.include? "substance" && suspension.games.downcase.include? "indef"
-      #   @substance_abuse_games_indef << suspension.games
+
       elsif suspension.category.downcase.include? "substance"
         @substance_abuse_games << suspension.games.to_i
-      # elsif suspension.category.downcase.include? "conduct" && suspension.games.downcase.include? "indef"
-      #   @personal_conduct_games_indef << suspension.games
+
       elsif suspension.category.downcase.include? "conduct"
         @personal_conduct_games << suspension.games.to_i
       else
         @game_violence_games << suspension.games.to_i
       end
     end
+
     @peds_games
     @substance_abuse_games
-    # @substance_abuse_games_indef
     @personal_conduct_games
-    # @personal_conduct_games_indef
     @game_violence_games
 
     @peds_avg = (@peds_games.inject(0, :+).to_f)/@peds_games.count.to_f
