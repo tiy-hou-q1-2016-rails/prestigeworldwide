@@ -7,13 +7,13 @@ class SuspensionsController < ApplicationController
     @suspensions = @suspensions.map do |hash|
       suspension = Suspension.new
       suspension.id = hash["id"].to_i
-      suspension.name = hash["name"].to_s
-      suspension.team = hash["team"].to_s
-      suspension.games = hash["games"].to_s
-      suspension.category = hash["category"].to_s
-      suspension.description = hash["description"].to_s
+      suspension.name = hash["name"]
+      suspension.team = hash["team"]
+      suspension.games = hash["games"]
+      suspension.category = hash["category"]
+      suspension.description = hash["description"]
       suspension.year = hash["year"].to_i
-      suspension.source = hash["source"].to_s
+      suspension.source = hash["source"]
       suspension
     end
   end
@@ -22,17 +22,15 @@ class SuspensionsController < ApplicationController
     @suspensions = fetch_suspensions.sort_by(&:name)
     if params[:qs].present?
       @suspensions = @suspensions.select do |suspension|
-        (suspension.name.downcase.include? params[:qs].downcase)
+        suspension.name.downcase.include? params[:qs].downcase
       end
-    elsif params[:category].present?
+    end
+    if params[:category].present?
       @suspensions = @suspensions.select do |suspension|
-        (suspension.category.downcase.include? params[:category].downcase)
+        suspension.category.downcase.include? params[:category].downcase
       end
     end
   end
-
-
-
 
   def decadegraph
     @suspensions = fetch_suspensions
