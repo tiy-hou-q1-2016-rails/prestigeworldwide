@@ -21,7 +21,6 @@
                   <div class="form-group">
                     <input name="qs" placeholder="Type Name"></input>
                   </div>
-
                     <select name="category">
                     <option value="">Select Category</option>
                     <option value="PEDs">PEDs</option>
@@ -95,9 +94,10 @@
               <% end %>
             </tbody>
           </table>
-        </div>
+          <%= paginate @suspensions %>
+        </table>
+        <%= paginate @suspensions %>
       </div>
-    </div>
 
   </body>
 </html>

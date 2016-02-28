@@ -17,7 +17,7 @@
 
         function drawStuff() {
           var data1 = new google.visualization.arrayToDataTable([
-            ['Suspension', 'Offenses'],
+            ['Category', 'Suspensions'],
             ["PED", <%= @peds.count %>],
             ["Personal Conduct", <%= @personal_conduct.count %>],
             ["Substance Abuse", <%= @substance_abuse.count %>],
@@ -93,15 +93,13 @@
               chart3.draw(data3, google.charts.Bar.convertOptions(options));
             };
           </script>
-
-
-
-  </head>
+</head>
   <body>
 
 <div id="wrapper">
 <div class="container">
     <h1>NFL <span>SUSPENSIONS</span></h1>
+
       <div class="row-fluid">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -114,20 +112,24 @@
           </div>
         </nav>
 
-<div class="container1">
-
-
-<div id="top_x_div1" style="width: 900px; height: 500px;"></div>
-
-<br>
-
-<div id="top_x_div2" style="width: 900px; height: 500px;"></div>
-<br>
-
-
-<div id="columnchart_material" style="width: 900px; height: 500px;"></div>
-</div>
-</div>
-</div>
-  </body>
+    <div class="container1">
+      <div id="top_x_div1" style="width: 900px; height: 500px;"></div>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <div id="top_x_div2" style="width: 900px; height: 500px;"></div>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <div id="columnchart_material" style="width: 900px; height: 500px;"></div>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
