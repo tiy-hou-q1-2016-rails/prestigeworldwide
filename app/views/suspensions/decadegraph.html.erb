@@ -3,7 +3,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>NFL Suspension Charts</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       <script type="text/javascript">
 
@@ -97,11 +99,9 @@
   </head>
   <body>
 
-  </body>
-
 <div id="wrapper">
 <div class="container">
-      <h1>NFL SUSPENSIONS</h1>
+    <h1>NFL <span>SUSPENSIONS</span></h1>
       <div class="row-fluid">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -109,6 +109,7 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li><%= link_to "Home", "/"%></li>
+              <li class="active"><a href="#">Decadegraph<span class="sr-only">(current)</span></a></li>
             </ul>
           </div>
         </nav>
@@ -128,4 +129,5 @@
 </div>
 </div>
 </div>
+  </body>
 </html>

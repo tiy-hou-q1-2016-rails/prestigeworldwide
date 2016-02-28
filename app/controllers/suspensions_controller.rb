@@ -18,21 +18,19 @@ class SuspensionsController < ApplicationController
     end
   end
 
+
   def index
-    @suspensions = fetch_suspensions.sort_by(&:name)
-    if params[:qs].present?
-      @suspensions = @suspensions.select do |suspension|
-        (suspension.name.downcase.include? params[:qs].downcase)
-      end
-    elsif params[:category].present?
-      @suspensions = @suspensions.select do |suspension|
-        (suspension.category.downcase.include? params[:category].downcase)
+      @suspensions = fetch_suspensions.sort_by(&:name)
+      if params[:qs].present?
+        @suspensions = @suspensions.select do |suspension|
+          (suspension.name.downcase.include? params[:qs].downcase)
+        end
+      elsif params[:category].present?
+        @suspensions = @suspensions.select do |suspension|
+          (suspension.category.downcase.include? params[:category].downcase)
+        end
       end
     end
-  end
-
-
-
 
   def decadegraph
     @suspensions = fetch_suspensions
