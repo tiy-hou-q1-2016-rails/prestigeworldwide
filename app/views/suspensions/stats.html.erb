@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+    <title>NFL Suspension Stats</title>
+  </head>
+  <body>
+    <div id="wrapper">
+    <div class="container">
+          <h1>NFL <span>SUSPENSIONS</span></h1>
+          <div class="row-fluid">
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form class="navbar-form navbar-left" role="search">
+                  <div class="form-group">
+                    <input name="qs" placeholder="Type Name"></input>
+                  </div>
+                    <select name="category">
+                    <option value="">Select Category</option>
+                    <option value="PEDs">PEDs</option>
+                    <option value="Substance abuse">Substance Abuse</option>
+                    <option value="Personal conduct">Personal Conduct</option>
+                    <option value="In-game violence">In-Game Violence</option>
+                  </select>
+                  <button type="submit" class="btn btn-default">Submit</button>
+
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><%= link_to "Home", "/"%></li>
+                  <li class="active"><a href="#">Stats<span class="sr-only">(current)</span></a></li>
+                  <li><%= link_to "Decadegraph", "/decadegraph"%></li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="row">
+                  Name
+                </th>
+                <th scope="row">
+                  Team
+                </th>
+                <th scope="row">
+                  Games
+                </th>
+                <th>
+                Category
+                </th>
+                <th scope="row">
+                  Description
+                </th>
+                <th scope="row">
+                  Year
+                </th>
+                <th scope="row">
+                  Source
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @suspensions.each do |suspension| %>
+              <tr>
+                <td>
+                  <%= suspension.name %>
+                </td>
+                <td>
+                  <%= suspension.team %>
+                </td>
+                <td>
+                  <%= suspension.games %>
+                </td>
+                <td>
+                  <%= suspension.category %>
+                </td>
+                <td>
+                  <%= suspension.description %>
+                </td>
+                <td>
+                  <%= suspension.year %>
+                </td>
+                <td>
+                  <%= suspension.source %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @suspensions %>
+        </table>
+        <%= paginate @suspensions %>
+      </div>
+
+  </body>
+</html>
