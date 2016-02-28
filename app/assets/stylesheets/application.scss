@@ -2,9 +2,31 @@
 @import 'suspensions';
 
 .container h1{
+  font-family: 'Bree Serif', serif;
   background: #000000;
   color: #FFFFFF;
-  font-size: 45px;
-  margin-top:0 auto;
+  font-size: 47px;
+  margin-top:-5px;
   padding-bottom:20px;
+}
+
+.container h1 span {
+  color: red;
+}
+
+.navbar-default .navbar-nav > li > a{
+  color: #000000;
+  font-weight: bold;
+}
+.navbar-default .navbar-nav > li > a:hover{
+    color: red;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper{
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+    }
 }
