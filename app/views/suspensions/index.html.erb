@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -7,94 +6,31 @@
     <title></title>
   </head>
   <body>
+
     <div id="wrapper">
-    <div class="container">
-          <h1>NFL <span>SUSPENSIONS</span></h1>
-          <div class="row-fluid">
+      <div class="container">
+        <h1>NFL
+          <span>SUSPENSIONS</span>
+        </h1>
+        <div class="row-fluid">
           <nav class="navbar navbar-default">
             <div class="container-fluid">
-              <!-- Brand and toggle get grouped for better mobile display -->
-
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <form class="navbar-form navbar-left" role="search">
-                  <div class="form-group">
-                    <input name="qs" placeholder="Type Name"></input>
-                  </div>
-                    <select name="category">
-                    <option value="">Select Category</option>
-                    <option value="PEDs">PEDs</option>
-                    <option value="Substance abuse">Substance Abuse</option>
-                    <option value="Personal conduct">Personal Conduct</option>
-                    <option value="In-game violence">In-Game Violence</option>
-                  </select>
-                  <button type="submit" class="btn btn-default">Submit</button>
-
-                </form>
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
-                  <li><%= link_to "Decadegraph", "/decadegraph/"%></li>
-                </ul>
-              </div>
-              <!-- /.navbar-collapse -->
+              <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                  <a href="#">Home
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li><%= link_to "Stats", "/stats/"%></li>
+                <li><%= link_to "Decadegraph", "/decadegraph/"%></li>
+              </ul>
             </div>
-            <!-- /.container-fluid -->
-          </nav>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="row">
-                  Name
-                </th>
-                <th scope="row">
-                  Team
-                </th>
-                <th scope="row">
-                  Games
-                </th>
-                <th>
-                Category
-                </th>
-                <th scope="row">
-                  Description
-                </th>
-                <th scope="row">
-                  Year
-                </th>
-                <th scope="row">
-                  Source
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @suspensions.each do |suspension| %>
-              <tr>
-                <td>
-                  <%= suspension.name %>
-                </td>
-                <td>
-                  <%= suspension.team %>
-                </td>
-                <td>
-                  <%= suspension.games %>
-                </td>
-                <td>
-                  <%= suspension.category %>
-                </td>
-                <td>
-                  <%= suspension.description %>
-                </td>
-                <td>
-                  <%= suspension.year %>
-                </td>
-                <td>
-                  <%= link_to suspension.source, suspension.source %>
-                </td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-          <%= paginate @suspensions %>
+            <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container-fluid -->
+        </nav>
+        <div class="img_container"></div>
       </div>
+    </div>
   </body>
 </html>

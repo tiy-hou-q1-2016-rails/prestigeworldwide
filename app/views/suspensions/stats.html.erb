@@ -1,7 +1,5 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
     <title>NFL Suspension Stats</title>
@@ -10,7 +8,6 @@
     <div id="wrapper">
     <div class="container">
           <h1>NFL <span>SUSPENSIONS</span></h1>
-          <div class="row-fluid">
           <nav class="navbar navbar-default">
             <div class="container-fluid">
               <!-- Brand and toggle get grouped for better mobile display -->
@@ -34,7 +31,7 @@
                 <ul class="nav navbar-nav navbar-right">
                   <li><%= link_to "Home", "/"%></li>
                   <li class="active"><a href="#">Stats<span class="sr-only">(current)</span></a></li>
-                  <li><%= link_to "Decadegraph", "/decadegraph"%></li>
+                  <li><%= link_to "Decadegraph", "/decadegraph/"%></li>
                 </ul>
             </div>
           </div>
@@ -92,11 +89,10 @@
               </tr>
               <% end %>
             </tbody>
-          </table>
-          <%= paginate @suspensions %>
         </table>
         <%= paginate @suspensions %>
       </div>
+    </div>
 
   </body>
 </html>
