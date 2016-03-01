@@ -18,22 +18,29 @@ class SuspensionsController < ApplicationController
     end
   end
 
-
-  def index
-   @suspensions = fetch_suspensions.sort_by(&:name)
-    if params[:qs].present?
-      @suspensions = @suspensions.select do |suspension|
-        suspension.name.downcase.include? params[:qs].downcase
-      end
-    end
-    if params[:category].present?
-      @suspensions = @suspensions.select do |suspension|
-        suspension.category.downcase.include? params[:category].downcase
-      end
-    end
-    @suspensions = Kaminari.paginate_array(@suspensions).page(params[:page]).per(12)
+  def stats
+    @suspensions = fetch_suspensions.sort_by(&:name)
+     if params[:qs].present?
+       @suspensions = @suspensions.select do |suspension|
+         suspension.name.downcase.include? params[:qs].downcase
+       end
+     end
+     if params[:category].present?
+       @suspensions = @suspensions.select do |suspension|
+         suspension.category.downcase.include? params[:category].downcase
+       end
+     end
+     @suspensions = Kaminari.paginate_array(@suspensions).page(params[:page]).per(12)
   end
 
+
+  def index
+  sql_query = "SELECT * FROM nfl_suspensions"
+  sql_query_name = "SELECT * FROM nfl_suspensions WHERE name ILIKE %#{params[:qs]}%"
+  sql_query_category = "SELECT * FROM nfl_suspensions WHERE category ILIKE %#{params[:category]}%"
+  @suspensions = ActiveRecord::Base.connection.execute(sql_query)
+  end
+  
   def decadegraph
     @suspensions = fetch_suspensions
 

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'suspensions#index'
 
   get "decadegraph" => 'suspensions#decadegraph'
-
+  get "stats" => 'suspensions#stats'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
