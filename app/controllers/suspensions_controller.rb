@@ -40,7 +40,8 @@ class SuspensionsController < ApplicationController
   sql_query_category = "SELECT * FROM nfl_suspensions WHERE category ILIKE %#{params[:category]}%"
   @suspensions = ActiveRecord::Base.connection.execute(sql_query)
   end
-  
+end
+
   def decadegraph
     @suspensions = fetch_suspensions
 
@@ -137,4 +138,3 @@ class SuspensionsController < ApplicationController
     @game_violence_avg = (@game_violence_games.inject(0, :+).to_f)/@game_violence_games.count.to_f
 
   end
-end
